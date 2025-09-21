@@ -1,4 +1,4 @@
-#YO MAPS MUSIC AND E-PLATFORM
+# YO MAPS MUSIC AND E-PLATFORM
 <p align="center">
   <img src="yologo.png" alt="Logo" width="300">
 </p>
