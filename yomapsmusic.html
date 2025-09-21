@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Yo Maps — Official Music & E-Platform</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{
+  --bg:#000;
+  --card:#111;
+  --accent:#d4af37;
+  --muted:#c0a75e;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,system-ui,sans-serif;color:#fff;}
+body{background:var(--bg);}
+header{display:flex;align-items:center;justify-content:space-between;padding:15px 25px;border-bottom:1px solid rgba(255,255,255,0.1);position:sticky;top:0;z-index:1000;background:var(--bg);}
+.logo{display:flex;align-items:center;font-weight:700;font-size:24px;color:var(--accent);padding:5px 10px;border-radius:8px;}
+.logo img{height:40px;margin-right:10px;}
+nav a{margin:0 12px;text-decoration:none;color:var(--accent);font-weight:500;}
+.cart-icon{position:relative;cursor:pointer;}
+.cart-icon span{position:absolute;top:-6px;right:-10px;background:red;color:#fff;font-size:12px;padding:2px 6px;border-radius:50%;}
+main{max-width:1100px;margin:20px auto;padding:0 15px;}
+h2{color:var(--accent);margin-bottom:12px;}
+.iframe-wrap{width:100%;height:380px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);margin-bottom:16px;background:#111;}
+.iframe-wrap iframe{width:100%;height:100%;}
+.search-bar{text-align:center;margin-bottom:20px;}
+.search-bar input{padding:10px;width:80%;max-width:420px;border-radius:8px;border:1px solid #333;background:#000;color:#fff;}
+.albums{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-bottom:40px;}
+.album{background:var(--card);border-radius:12px;padding:16px;text-align:center;}
+.album img{width:100%;height:280px;object-fit:cover;border-radius:8px;margin-bottom:12px;}
+.album-links a{margin:0 6px;color:var(--accent);font-size:28px;}
+.bio, .merch, .bookings{margin-bottom:40px;}
+.bio p{line-height:1.6;font-size:16px;}
+.merch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+.product{background:var(--card);padding:12px;border-radius:10px;text-align:center;}
+.product img{width:100%;border-radius:8px;margin-bottom:10px;}
+.product button{margin-top:8px;padding:8px 12px;background:var(--accent);color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:600;}
+.cart-items{background:var(--card);padding:12px;border-radius:8px;margin-top:20px;}
+.cart-items h4{margin-bottom:8px;}
+.cart-items ul{list-style:none;}
+.cart-items li{margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;}
+.cart-items button{padding:4px 6px;background:red;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:12px;}
+footer{text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,0.1);color:var(--muted);}
+footer a{color:var(--accent);font-size:24px;margin:0 8px;}
+.bookings button{margin:6px;padding:8px 12px;background:var(--accent);color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:600;}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><img src="yologo.png" alt="Logo"/> YO MAPS</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#bio">Biography</a>
+    <a href="#music">Music</a>
+    <a href="#albums">Albums</a>
+    <a href="#merch">Merch</a>
+    <a href="#bookings">Bookings</a>
+  </nav>
+  <div class="cart-icon" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i><span id="cart-count">0</span></div>
+</header>
+
+<main id="home">
+  <!-- Search Bars -->
+  <section id="searches" style="margin-bottom:30px;">
+    <h2 style="color:var(--accent); text-align:center; margin-bottom:16px;">SEARCH ALL YO MAPS MUSIC</h2>
+    <div class="search-bar">
+      <form onsubmit="searchSpotify(event)"><input type="text" id="spotify-query" placeholder="Search Spotify..."></form>
+    </div>
+    <div class="search-bar">
+      <form onsubmit="searchApple(event)"><input type="text" id="apple-query" placeholder="Search Apple Music..."></form>
+    </div>
+    <div class="search-bar">
+      <form onsubmit="searchYouTube(event)"><input type="text" id="youtube-query" placeholder="Search YouTube..."></form>
+    </div>
+  </section>
+
+<!-- Calendar & Current Time -->
+<section id="calendar" style="background:#111; color:var(--accent); padding:30px; border-radius:12px; margin-bottom:40px; text-align:center;">
+  <h2>CURRENT DATE AND TIME</h2>
+  <p id="current-date" style="font-size:18px; margin-bottom:10px;"></p>
+  <p id="current-time" style="font-size:24px; font-weight:700;"></p>
+</section>
+
+<!-- Upcoming Events / Shows -->
+<section id="events" style="margin-bottom:40px;">
+  <h2 style="color:var(--accent); text-align:center; margin-bottom:20px;">Upcoming Events & Shows</h2>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; max-width:1100px; margin:0 auto;">
+
+    <!-- Local Concert — Lusaka -->
+    <div style="background:var(--card); border-radius:12px; padding:16px; text-align:center;">
+      <h3>Live Concert — Lusaka <img src="https://flagcdn.com/w20/zm.png" alt="Zambia Flag" style="vertical-align:middle;"></h3>
+      <p>Date: 15 Oct 2025</p>
+      <p>Venue: Lusaka National Stadium</p>
+      <a href="https://wa.me/260000000000?text=I%20want%20tickets%20for%20Yo%20Maps%20Lusaka%20Concert" target="_blank" 
+         style="display:inline-block; padding:10px 16px; background:var(--accent); color:#000; border-radius:8px; font-weight:600; margin-top:10px; text-decoration:none;">
+         Book Tickets
+      </a>
+    </div>
+
+    <!-- Music Festival — Ndola -->
+    <div style="background:var(--card); border-radius:12px; padding:16px; text-align:center;">
+      <h3>Music Festival — Ndola <img src="https://flagcdn.com/w20/zm.png" alt="Zambia Flag" style="vertical-align:middle;"></h3>
+      <p>Date: 28 Oct 2025</p>
+      <p>Venue: Levy Mwanawasa Stadium</p>
+      <a href="https://wa.me/260000000000?text=I%20want%20tickets%20for%20Yo%20Maps%20Ndola%20Festival" target="_blank" 
+         style="display:inline-block; padding:10px 16px; background:var(--accent); color:#000; border-radius:8px; font-weight:600; margin-top:10px; text-decoration:none;">
+         Book Tickets
+      </a>
+    </div>
+
+    <!-- Private Event — Kitwe -->
+    <div style="background:var(--card); border-radius:12px; padding:16px; text-align:center;">
+      <h3>Private Event — Kitwe <img src="https://flagcdn.com/w20/zm.png" alt="Zambia Flag" style="vertical-align:middle;"></h3>
+      <p>Date: 5 Nov 2025</p>
+      <p>Venue: Kitwe Convention Hall</p>
+      <a href="https://wa.me/260000000000?text=I%20want%20tickets%20for%20Yo%20Maps%20Kitwe%20Event" target="_blank" 
+         style="display:inline-block; padding:10px 16px; background:var(--accent); color:#000; border-radius:8px; font-weight:600; margin-top:10px; text-decoration:none;">
+         Book Tickets
+      </a>
+    </div>
+
+    <!-- International Show — UK -->
+    <div style="background:var(--card); border-radius:12px; padding:16px; text-align:center;">
+      <h3>International Show — London <img src="https://flagcdn.com/w20/gb.png" alt="UK Flag" style="vertical-align:middle;"></h3>
+      <p>Date: 20 Nov 2025</p>
+      <p>Venue: O2 Arena</p>
+      <a href="https://wa.me/260000000000?text=I%20want%20tickets%20for%20Yo%20Maps%20London%20Show" target="_blank" 
+         style="display:inline-block; padding:10px 16px; background:var(--accent); color:#000; border-radius:8px; font-weight:600; margin-top:10px; text-decoration:none;">
+         Book Tickets
+      </a>
+    </div>
+
+    <!-- International Show — Australia -->
+    <div style="background:var(--card); border-radius:12px; padding:16px; text-align:center;">
+      <h3>International Show — Sydney <img src="https://flagcdn.com/w20/au.png" alt="Australia Flag" style="vertical-align:middle;"></h3>
+      <p>Date: 5 Dec 2025</p>
+      <p>Venue: Sydney Opera House</p>
+      <a href="https://wa.me/260000000000?text=I%20want%20tickets%20for%20Yo%20Maps%20Sydney%20Show" target="_blank" 
+         style="display:inline-block; padding:10px 16px; background:var(--accent); color:#000; border-radius:8px; font-weight:600; margin-top:10px; text-decoration:none;">
+         Book Tickets
+      </a>
+    </div>
+
+    <!-- Yo Maps Festival — Zambia -->
+    <div style="background:var(--card); border-radius:12px; padding:16px; text-align:center;">
+      <h3>Yo Maps Festival — Lusaka <img src="https://flagcdn.com/w20/zm.png" alt="Zambia Flag" style="vertical-align:middle;"></h3>
+      <p>Date: 12 Dec 2025</p>
+      <p>Venue: National Heroes Stadium</p>
+      <a href="https://wa.me/260000000000?text=I%20want%20tickets%20for%20Yo%20Maps%20Festival%20Lusaka" target="_blank" 
+         style="display:inline-block; padding:10px 16px; background:var(--accent); color:#000; border-radius:8px; font-weight:600; margin-top:10px; text-decoration:none;">
+         Book Tickets
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Streaming -->
+  <section id="music">
+    <h2>YO MAPS - SPOTIFY</h2>
+    <div class="iframe-wrap">
+      <iframe src="https://open.spotify.com/embed/artist/6ctMiUYEAd4cy0CaH355Hk" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+
+    <h2>YO MAPS - APPLE MUSIC</h2>
+    <div class="iframe-wrap">
+      <iframe src="https://embed.music.apple.com/us/artist/yo-maps/1455955222" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
+    </div>
+
+ <h2>YO MAPS - YOUTUBE MUSIC</h2>
+    <!-- YouTube Section -->
+    <section id="youtube" style="background:#111; padding:40px 0;">
+      <div style="display:flex; max-width:1100px; margin:0 auto; align-items:center; gap:20px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:250px; display:flex; justify-content:center;">
+          <img src="yo.jpg" alt="Yo Maps" style="width:100%; max-width:300px; border-radius:12px; object-fit:cover;"/>
+        </div>
+        <div style="flex:2; min-width:300px; display:flex; justify-content:center; align-items:center;">
+          <a href="https://www.youtube.com/@yomapsyo3164" target="_blank"
+             style="padding:15px 30px; background:var(--accent); color:#000; border-radius:8px; text-decoration:none; font-weight:700; font-size:18px;">
+             Stream Yo Maps Music Here
+          </a>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- Albums -->
+  <section id="albums">
+    <h2>Featured Albums</h2>
+    <div class="albums">
+      <div class="album">
+        <img src="a1.jpg" alt="Kondwa">
+        <h3>Kondwa</h3>
+        <div class="album-links">
+          <a href="SPOTIFY_URL_FOR_KONDWA" target="_blank"><i class="fab fa-spotify"></i></a>
+          <a href="APPLE_URL_FOR_KONDWA" target="_blank"><i class="fab fa-apple"></i></a>
+          <a href="YOUTUBE_URL_FOR_KONDWA" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="album">
+        <img src="a2.jpg" alt="Komando">
+        <h3>Komando</h3>
+        <div class="album-links">
+          <a href="SPOTIFY_URL_FOR_KOMANDO" target="_blank"><i class="fab fa-spotify"></i></a>
+          <a href="APPLE_URL_FOR_KOMANDO" target="_blank"><i class="fab fa-apple"></i></a>
+          <a href="YOUTUBE_URL_FOR_KOMANDO" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="album">
+        <img src="a3.jpg" alt="Try Again">
+        <h3>Try Again</h3>
+        <div class="album-links">
+          <a href="SPOTIFY_URL_FOR_TRY_AGAIN" target="_blank"><i class="fab fa-spotify"></i></a>
+          <a href="APPLE_URL_FOR_TRY_AGAIN" target="_blank"><i class="fab fa-apple"></i></a>
+          <a href="YOUTUBE_URL_FOR_TRY_AGAIN" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Biography -->
+  <section id="bio" class="bio">
+    <h2>Biography</h2>
+    <p>Yo Maps is a multi-talented Zambian artist blending contemporary beats with authentic Zambian sounds. He is a <strong>businessman</strong>, <strong>brand ambassador</strong> for several local and international brands, and an influential figure in the music industry. His music spans genres like Afro-pop, R&B, and contemporary Zambian music, reaching fans worldwide through Spotify, Apple Music, and YouTube.</p>
+  </section>
+
+  <!-- Merch -->
+  <section id="merch" class="merch">
+    <h2>Merchandise</h2>
+    <div class="merch-grid">
+      <div class="product" data-name="YM T-Shirt" data-price="25">
+        <img src="b.jpg" alt="YM T-Shirt">
+        <p>YM T-Shirt</p>
+        <p>$25</p>
+        <button onclick="addToCart(this)">Add to Cart</button>
+      </div>
+      <div class="product" data-name="YM Cap" data-price="15">
+        <img src="b1.jpg" alt="YM Cap">
+        <p>YM Cap</p>
+        <p>$15</p>
+        <button onclick="addToCart(this)">Add to Cart</button>
+      </div>
+      <div class="product" data-name="YM Hoodie" data-price="40">
+        <img src="b3.avif" alt="YM Hoodie">
+        <p>YM Hoodie</p>
+        <p>$40</p>
+        <button onclick="addToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+    <div class="cart-items" id="cart-items" style="display:none;">
+      <h4>Your Cart</h4>
+      <ul id="cart-list"></ul>
+      <p><strong>Total: $<span id="cart-total">0</span></strong></p>
+      <button onclick="checkout()">Checkout via WhatsApp</button>
+    </div>
+  </section>
+
+  <!-- Bookings -->
+  <section id="bookings" class="bookings">
+    <h2>Bookings</h2>
+    <p>Contact for shows or collaborations:</p>
+    <button onclick="window.location='mailto:bookings@yomaps.com'"><i class="fas fa-envelope"></i> Email</button>
+    <button onclick="window.location='https://wa.me/260000000000'"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+  </section>
+</main>
+
+<footer>
+  <p>Follow Yo Maps:</p>
+  <a href="https://facebook.com/YoMapsYo" target="_blank"><i class="fab fa-facebook"></i></a>
+  <a href="https://instagram.com/YoMapsYo" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://x.com/YoMapsYo" target="_blank"><i class="fab fa-x-twitter"></i></a>
+  <a href="https://tiktok.com/@YoMapsYo" target="_blank"><i class="fab fa-tiktok"></i></a>
+  <p>&copy; <span id="year"></span> Yo Maps — E-Platform. Powered by Sande Tech Solutions.</p>
+</footer>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Search Functions
+function searchSpotify(event){event.preventDefault();const q=document.getElementById('spotify-query').value.trim();if(!q)return;window.open(`https://open.spotify.com/search/${encodeURIComponent(q)}`,'_blank');}
+function searchApple(event){event.preventDefault();const q=document.getElementById('apple-query').value.trim();if(!q)return;window.open(`https://music.apple.com/us/search?term=${encodeURIComponent(q)}`,'_blank');}
+function searchYouTube(event){event.preventDefault();const q=document.getElementById('youtube-query').value.trim();if(!q)return;window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`,'_blank');}
+
+// Cart System
+let cart = JSON.parse(localStorage.getItem('ymCart')) || [];
+function updateCartDisplay(){
+  const cartList=document.getElementById('cart-list');
+  const cartTotal=document.getElementById('cart-total');
+  const cartCount=document.getElementById('cart-count');
+  cartList.innerHTML='';
+  let total=0;
+  cart.forEach((item,index)=>{
+    const li=document.createElement('li');
+    li.textContent=`${item.name} x${item.qty} - $${item.price*item.qty}`;
+    const removeBtn=document.createElement('button');
+    removeBtn.textContent='Remove';
+    removeBtn.onclick=()=>{cart.splice(index,1);saveCart();};
+    li.appendChild(removeBtn);
+    cartList.appendChild(li);
+    total+=item.price*item.qty;
+  });
+  cartTotal.textContent=total;
+  cartCount.textContent=cart.length;
+  document.getElementById('cart-items').style.display=cart.length?'block':'none';
+}
+function saveCart(){localStorage.setItem('ymCart',JSON.stringify(cart));updateCartDisplay();}
+function addToCart(btn){const p=btn.parentElement;const name=p.dataset.name;const price=parseFloat(p.dataset.price);const exist=cart.find(i=>i.name===name);if(exist)exist.qty+=1;else cart.push({name,price,qty:1});saveCart();}
+function toggleCart(){const cartEl=document.getElementById('cart-items');cartEl.style.display=cartEl.style.display==='block'?'none':'block';}
+function checkout(){if(cart.length===0)return alert('Cart is empty');let text='Yo Maps Merch Order:%0A';cart.forEach(i=>{text+=`${i.name} x${i.qty} - $${i.price*i.qty}%0A`;});const total=cart.reduce((a,b)=>a+b.price*b.qty,0);text+=`Total: $${total}%0A`;const waLink=`https://wa.me/260000000000?text=${text}`;window.open(waLink,'_blank');}
+updateCartDisplay();
+
+// Live date and time
+function updateDateTime(){
+  const now = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById('current-date').textContent = now.toLocaleDateString(undefined, options);
+  document.getElementById('current-time').textContent = now.toLocaleTimeString();
+}
+setInterval(updateDateTime, 1000);
+updateDateTime();
+
+</script>
+</body>
+</html>
