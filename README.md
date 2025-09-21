@@ -1,6 +1,6 @@
 # yomapsmusic.com
 <p align="center">
-  <img src="shi.webp" alt="Logo" width="300">
+  <img src="yologo.png" alt="Logo" width="300">
 </p>
 
 <p align="center">
