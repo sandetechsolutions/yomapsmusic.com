@@ -172,23 +172,24 @@ footer a{color:var(--accent);font-size:24px;margin:0 8px;}
     <h2>YO MAPS - BOOMPLAY</h2>
 
 <div class="boomplay-card">
-  <img src="https://boomplaymusic.com/images/logo.png" alt="Boomplay" class="boomplay-logo">
+  <img src="yo.jpeg" 
+       alt="Boomplay" 
+       class="boomplay-logo">
 
   <p>Stream Yo Maps on Boomplay</p>
 
-  <!-- Direct Link to Yo Maps Boomplay Artist Page -->
-  <a href="https://www.boomplay.com/artists/xxxxxx" 
+  <!-- Direct Boomplay Artist Link -->
+  <a href="https://www.boomplay.com/share/artist/4334757?srModel=COPYLINK&srList=ANDROID" 
      target="_blank" 
      class="stream-btn">
-     Open Yo Maps on Boomplay
+     Visit Yo Maps on Boomplay
   </a>
 
-  <!-- Optional: Direct stream link for a song or album -->
-  <!-- Replace the URL below with any Yo Maps Boomplay track/album -->
-  <a href="https://www.boomplay.com/songs/xxxxxx"
-     target="_blank"
+  <!-- Latest Album -->
+  <a href="https://www.boomplay.com/share/album/106341001?srModel=COPYLINK&srList=ANDROID" 
+     target="_blank" 
      class="stream-btn secondary">
-     Stream Now
+     Stream Latest Album: TRY AGAIN
   </a>
 </div>
 
@@ -198,14 +199,17 @@ footer a{color:var(--accent);font-size:24px;margin:0 8px;}
     max-width: 420px;
     padding: 20px;
     border-radius: 12px;
-    background: #111;
+    background: #0e0e0e;
     color: white;
     text-align: center;
+    box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    margin-bottom: 25px;
   }
 
   .boomplay-logo {
     width: 80px;
     margin-bottom: 15px;
+    opacity: 0.9;
   }
 
   .stream-btn {
@@ -218,6 +222,7 @@ footer a{color:var(--accent);font-size:24px;margin:0 8px;}
     border-radius: 8px;
     font-weight: bold;
     width: 80%;
+    transition: 0.2s;
   }
 
   .stream-btn.secondary {
@@ -225,10 +230,10 @@ footer a{color:var(--accent);font-size:24px;margin:0 8px;}
   }
 
   .stream-btn:hover {
-    opacity: 0.85;
+    transform: scale(0.98);
+    opacity: 0.9;
   }
 </style>
-
 
  <h2>YO MAPS - YOUTUBE MUSIC</h2>
     <!-- YouTube Section -->
@@ -384,5 +389,6 @@ updateDateTime();
 </script>
 </body>
 </html>
+
 
 
