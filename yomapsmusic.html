@@ -169,69 +169,78 @@ footer a{color:var(--accent);font-size:24px;margin:0 8px;}
       <iframe src="https://embed.music.apple.com/us/artist/yo-maps/1455955222" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
     </div>
 
-    <h2>YO MAPS - BOOMPLAY</h2>
+   <h2>YO MAPS - BOOMPLAY</h2>
 
-<div class="boomplay-card">
-  <img src="yo.jpeg" 
-       alt="Boomplay" 
-       class="boomplay-logo">
+<div class="boomplay-wrapper">
+  <div class="boomplay-left">
+    <img src="yo.jpeg"
+         alt="Boomplay"
+         class="boomplay-large-img">
+  </div>
 
-  <p>Stream Yo Maps on Boomplay</p>
+  <div class="boomplay-right">
+    <p class="boomplay-title">Play Yo Maps on Boomplay</p>
 
-  <!-- Direct Boomplay Artist Link -->
-  <a href="https://www.boomplay.com/share/artist/4334757?srModel=COPYLINK&srList=ANDROID" 
-     target="_blank" 
-     class="stream-btn">
-     Visit Yo Maps on Boomplay
-  </a>
-
-  <!-- Latest Album -->
-  <a href="https://www.boomplay.com/share/album/106341001?srModel=COPYLINK&srList=ANDROID" 
-     target="_blank" 
-     class="stream-btn secondary">
-     Stream Latest Album: TRY AGAIN
-  </a>
+    <a href="https://www.boomplay.com/share/artist/4334757?srModel=COPYLINK&srList=ANDROID"
+       target="_blank"
+       class="stream-btn">
+       Open Boomplay Artist Page
+    </a>
+  </div>
 </div>
 
 <style>
-  .boomplay-card {
+  .boomplay-wrapper {
+    display: flex;
+    align-items: center;
     width: 100%;
-    max-width: 420px;
-    padding: 20px;
-    border-radius: 12px;
+    max-width: 680px; /* Wide like your Apple Music embed */
     background: #0e0e0e;
     color: white;
-    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
     box-shadow: 0 0 12px rgba(0,0,0,0.5);
-    margin-bottom: 25px;
   }
 
-  .boomplay-logo {
-    width: 80px;
-    margin-bottom: 15px;
-    opacity: 0.9;
+  .boomplay-left {
+    flex: 0 0 140px; /* Adjust size as needed */
+    margin-right: 20px;
+  }
+
+  .boomplay-large-img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: black;
+    padding: 10px;
+  }
+
+  .boomplay-right {
+    flex: 1;
+    text-align: left;
+  }
+
+  .boomplay-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
   }
 
   .stream-btn {
-    display: block;
-    margin: 10px auto;
+    display: inline-block;
     padding: 12px 18px;
     background: #00a3ff;
     color: white;
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
-    width: 80%;
     transition: 0.2s;
   }
 
-  .stream-btn.secondary {
-    background: #00c46c;
-  }
-
   .stream-btn:hover {
+    opacity: 0.85;
     transform: scale(0.98);
-    opacity: 0.9;
   }
 </style>
 
@@ -289,7 +298,7 @@ footer a{color:var(--accent);font-size:24px;margin:0 8px;}
   <!-- Biography -->
   <section id="bio" class="bio">
     <h2>Biography</h2>
-    <p>Yo Maps is a multi-talented Zambian artist blending contemporary beats with authentic Zambian sounds Under Olios Records. He is a <strong>businessman</strong>, <strong>brand ambassador</strong> for several local and international brands, and an influential figure in the music industry. His music spans genres like Afro-pop, R&B, and contemporary Zambian music, reaching fans worldwide through Spotify, Apple Music, and YouTube.</p>
+    <p> Elton Mulenga, Famously known as Yo Maps is a multi-talented Zambian artist blending contemporary beats with authentic Zambian sounds Under Olios Records. He is a <strong>businessman</strong>, <strong>brand ambassador</strong> for multiple brands, and an influential figure in the music industry. His music spans genres like Afro-pop, R&B, and contemporary Zambian music, reaching fans worldwide through Spotify, Apple Music, and YouTube.</p>
   </section>
 
   <!-- Merch -->
@@ -389,6 +398,7 @@ updateDateTime();
 </script>
 </body>
 </html>
+
 
 
 
