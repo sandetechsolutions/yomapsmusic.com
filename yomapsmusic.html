@@ -169,12 +169,12 @@ footer a{color:var(--accent);font-size:24px;margin:0 8px;}
       <iframe src="https://embed.music.apple.com/us/artist/yo-maps/1455955222" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
     </div>
 
-   <h2>YO MAPS - BOOMPLAY</h2>
+ <h2>YO MAPS - BOOMPLAY</h2>
 
-<div class="boomplay-wrapper">
+<div class="iframe-wrap boomplay-wrapper">
   <div class="boomplay-left">
     <img src="yo.jpeg"
-         alt="Boomplay"
+         alt="Yo Maps"
          class="boomplay-large-img">
   </div>
 
@@ -190,11 +190,17 @@ footer a{color:var(--accent);font-size:24px;margin:0 8px;}
 </div>
 
 <style>
+  /* Make Boomplay match exact size of Spotify/Apple iframe */
+  .iframe-wrap {
+    width: 100%;
+    max-width: 680px; 
+    margin-bottom: 20px;
+  }
+
   .boomplay-wrapper {
     display: flex;
     align-items: center;
-    width: 100%;
-    max-width: 680px; /* Wide like your Apple Music embed */
+    width: 100%; 
     background: #0e0e0e;
     color: white;
     padding: 20px;
@@ -203,17 +209,15 @@ footer a{color:var(--accent);font-size:24px;margin:0 8px;}
   }
 
   .boomplay-left {
-    flex: 0 0 140px; /* Adjust size as needed */
+    flex: 0 0 140px;
     margin-right: 20px;
   }
 
   .boomplay-large-img {
     width: 140px;
     height: 140px;
-    object-fit: contain;
-    border-radius: 10px;
-    background: black;
-    padding: 10px;
+    object-fit: cover;
+    border-radius: 12px;
   }
 
   .boomplay-right {
@@ -243,6 +247,7 @@ footer a{color:var(--accent);font-size:24px;margin:0 8px;}
     transform: scale(0.98);
   }
 </style>
+
 
  <h2>YO MAPS - YOUTUBE MUSIC</h2>
     <!-- YouTube Section -->
@@ -398,6 +403,7 @@ updateDateTime();
 </script>
 </body>
 </html>
+
 
 
 
